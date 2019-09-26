@@ -7,7 +7,7 @@ namespace CartExtension.Core.Repositories
     {
         void Update(CartItem item);
         void Add(CartItem item);
-        void Delete(object itemId);
+        void Delete(string itemId);
         ICollection<CartItem> GetCart();
         void SetCart(ICollection<CartItem> cart);
         void ResetCart();

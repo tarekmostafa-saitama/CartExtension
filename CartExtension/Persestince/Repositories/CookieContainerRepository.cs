@@ -19,10 +19,10 @@ namespace CartExtension.Persestince.Repositories
             SetCart(cart);
         }
 
-        public void Delete(object itemId)
+        public void Delete(string itemId)
         {
             ICollection<CartItem> Cart = GetCart();
-            CartItem i = Cart.FirstOrDefault(x => x.Id.Equals(itemId));
+            CartItem i = Cart.FirstOrDefault(x => x.Id == itemId);
             Cart.Remove(i);
             SetCart(Cart);
         }

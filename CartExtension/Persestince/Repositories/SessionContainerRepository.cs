@@ -15,7 +15,7 @@ namespace CartExtension.Persestince.Repositories
         public void Add(CartItem item)
         {
             var cart = (List<CartItem>)GetCart();
-            if (cart.Count(x => x.Id.Equals(item.Id)) != 0)
+            if (cart.Count(x => x.Id == item.Id) != 0)
             {
 
                 cart.First(x => x.Id.Equals(item.Id)).Amount = cart.First(x => x.Id.Equals(item.Id)).Amount + item.Amount;
@@ -29,7 +29,7 @@ namespace CartExtension.Persestince.Repositories
             SetCart(cart);
         }
 
-        public void Delete(object itemId)
+        public void Delete(string itemId)
         {
             
             ICollection<CartItem> cart = GetCart();

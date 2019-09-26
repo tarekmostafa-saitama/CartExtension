@@ -8,7 +8,7 @@ using CartExtension.Core.Repositories;
 
 namespace CartExtension.Persistence.Repositories
 {
-    class Cart : ICart
+    public class Cart : ICart
     {
         private IContainerRepository _cart { get; set; }
         public Cart()
@@ -26,7 +26,7 @@ namespace CartExtension.Persistence.Repositories
             _cart.Add(item);
         }
 
-        public void Delete(object itemId)
+        public void Delete(string itemId)
         {
             _cart.Delete(itemId);
         }

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Demo.Models.Item>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Amount</th>
+                <th>Total Cost</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="4">
+
+                            <h2 class="text-center">No Products in the Cart.</h2>
+                 
+                    </td>
+                </tr>
+
+            }
+            @foreach (var i in Model)
+            {
+               
+                <tr>
+                    <td>@i.Name</td>
+                    <td>@i.Amount</td>
+                    @{ 
+                        int total = i.Price * i.Amount;
+                    }
+                    <td>@total</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-4">
+                                @using (Html.BeginForm("UpdateFromCart", "Home", FormMethod.Post))
+                                {
+                                    <div class="row">
+                                        <div class="pull-left col-md-6">
+                                            <button type="submit" class="form-control btn btn-primary"><i class="fa fa-edit"></i></button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="hidden" name="Id" value="@i.Id" />
+                                            <input type="hidden" name="Price" value="@i.Price" />
+                                            <input type="hidden" name="Name" value="@i.Name" />
+                                            <input name="Amount" type="number" value="@i.Amount" class="form-control" />
+                                        </div>
+                                    </div>
+
+
+                                }
+                            </div>
+                            <div class="col-md-2">
+                                @using (Html.BeginForm("DeleteFromCart", "Home", FormMethod.Post))
+                                {
+                                    <input type="hidden" value="@i.Id" name="itemId" />
+                                    <button type="submit" class="form-control btn btn-danger"><i class="fa fa-trash"></i></button>
+
+                                }
+                            </div>
+
+                        </div>
+
+                    </td>
+                </tr>
+                        }
+
+        </tbody>
+    </table>
+    <hr />
+    <h3>(Total Cost : @ViewBag.TotalCost $)</h3>
+</div>
+

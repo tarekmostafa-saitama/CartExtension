@@ -10,7 +10,7 @@ using CartExtension.Persistence.Repositories;
 
 namespace CartExtension
 {
-    class CartConfiguration
+    public class CartConfiguration
     {
         private static IContainerRepository _cartType;
         public IContainerRepository CartSort

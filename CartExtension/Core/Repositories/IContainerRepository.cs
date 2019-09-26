@@ -7,10 +7,10 @@ using CartExtension.Core.Model;
 
 namespace CartExtension.Core.Repositories
 {
-    interface IContainerRepository
+    public interface IContainerRepository
     {
         void Add(CartItem item);
-        void Delete(object itemId);
+        void Delete(string itemId);
         ICollection<CartItem> GetCart();
         void ResetCart();
         void SetCart(ICollection<CartItem> cart);
